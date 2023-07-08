@@ -122,6 +122,10 @@ write.table (res, "LINE_olfactory_bulb_differential_expression_with_transposons.
 # PCA plot
 vsd <- vst(dds, blind=FALSE)
 pcaData <- plotPCA(vsd, intgroup=c("condition"), returnData=TRUE)
+
+levels (pcaData$condition) <- c(levels (pcaData$condition), "shL1")
+pcaData$condition[pcaData$condition == "KO"] <- "shL1"
+
 percentVar <- round(100 * attr(pcaData, "percentVar"))
 
 p1 <- ggplot(pcaData, aes(PC1, PC2, color=condition, shape=condition)) +
@@ -129,7 +133,7 @@ p1 <- ggplot(pcaData, aes(PC1, PC2, color=condition, shape=condition)) +
   		xlab(paste0("PC1: ",percentVar[1],"% variance")) +
   		ylab(paste0("PC2: ",percentVar[2],"% variance")) + 
 		coord_fixed () + geom_label_repel (aes(label = name))
-
+p1
 ggsave ("PCA plot.pdf", p1)
 
 
