@@ -24,9 +24,9 @@ geneUniverse <- unlist(mget(geneUniverse, envir=org.Mm.egENSEMBL2EG, ifnotfound 
 
 
 
-# over-representation analysis of GO pathways
+# over-representation analysis of GO pathways (ALL or BP)
 
-ora.go <- enrichGO (gene = deGenes, ont = "BP",
+ora.go <- enrichGO (gene = deGenes, ont = "ALL",
                     OrgDb ="org.Mm.eg.db",
                     universe = geneUniverse,
                     readable=TRUE,
@@ -99,14 +99,14 @@ geneUniverse <- unlist(mget(geneUniverse, envir=org.Mm.egENSEMBL2EG, ifnotfound 
 
 # over-representation analysis of GO pathways
 
-ora.go <- enrichGO (gene = deGenes, ont = "BP",
+ora.go <- enrichGO (gene = deGenes, ont = "ALL",
                     OrgDb ="org.Mm.eg.db",
                     universe = geneUniverse,
                     readable=TRUE,
                     pvalueCutoff = 0.05, pAdjustMethod = "BH")
 
 dim (ora.go)
-# 2
+# 29
 
 tab.go <- as.data.frame(ora.go)
 tab.go$geneID <- gsub ("/", ",", tab.go$geneID)
