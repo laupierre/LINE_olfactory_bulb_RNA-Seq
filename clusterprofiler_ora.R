@@ -39,7 +39,7 @@ tab.go <- as.data.frame(ora.go)
 tab.go$geneID <- gsub ("/", ",", tab.go$geneID)
 head (tab.go)
 
-write.table (tab.go, "GOA_increased_genes.txt", sep="\t", quote=F, row.names=F)
+write.table (tab.go, "GOA_clusterprofiler_increased_genes.txt", sep="\t", quote=F, row.names=F)
 
 
 
@@ -111,7 +111,7 @@ tab.go <- as.data.frame(ora.go)
 tab.go$geneID <- gsub ("/", ",", tab.go$geneID)
 head (tab.go)
 
-write.table (tab.go, "GOA_decreased_genes.txt", sep="\t", quote=F, row.names=F)
+write.table (tab.go, "GOA_clusterprofiler_decreased_genes.txt", sep="\t", quote=F, row.names=F)
 
 
 
