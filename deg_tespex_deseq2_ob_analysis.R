@@ -104,7 +104,7 @@ res$gene_type [idx2] <- "transposon"
 
 for (i in (1:dim (res)[1])) {
 if (res$gene_type[i] == "transposon") {
-print (res$gene_name[i])
+#print (res$gene_name[i])
 res$description[i]  <- annot_trans$transfamily [annot_trans$transname == res$gene_name[i]]
 }
 }
@@ -114,6 +114,8 @@ table (res$padj < 0.05)
 
 boxplot (res$log2FoldChange)
 abline (h=0)
+
+saveRDS (res, file="deg.rds")
 
 write.table (res, "LINE_olfactory_bulb_differential_expression_with_transposons.txt", row.names=F, quote=F, sep="\t")
 
