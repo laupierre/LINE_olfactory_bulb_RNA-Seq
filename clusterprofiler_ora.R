@@ -39,7 +39,7 @@ tab.go <- as.data.frame(ora.go)
 tab.go$geneID <- gsub ("/", ",", tab.go$geneID)
 head (tab.go)
 
-write.table (tab.go, "GOA_positive_genes.txt", sep="\t", quote=F, row.names=F)
+write.table (tab.go, "GOA_increased_genes.txt", sep="\t", quote=F, row.names=F)
 
 
 
@@ -67,7 +67,6 @@ entrez <- unlist (strsplit (as.vector (tab.kegg$geneID [i]), split="/"))
 symbols <- AnnotationDbi::select(org.Mm.eg.db, keys= entrez, keytype="ENTREZID", columns="SYMBOL")
 res[[i]] <- unique (symbols$SYMBOL)
 }
-
 
 res <- lapply (res, function (x) {paste (x,collapse="," )} )
 x <- t (data.frame (res))
@@ -112,7 +111,7 @@ tab.go <- as.data.frame(ora.go)
 tab.go$geneID <- gsub ("/", ",", tab.go$geneID)
 head (tab.go)
 
-write.table (tab.go, "GOA_negative_genes.txt", sep="\t", quote=F, row.names=F)
+write.table (tab.go, "GOA_decreased_genes.txt", sep="\t", quote=F, row.names=F)
 
 
 
@@ -148,12 +147,5 @@ row.names (x) <- 1:dim (tab.kegg)[1]
 gsedf <- cbind (data.frame (tab.kegg), genes= x)
 gsedf <- gsedf[ ,!colnames (gsedf) %in% c("geneID")]
 head (gsedf)
-
-
-
-
-
-
-
 
 
